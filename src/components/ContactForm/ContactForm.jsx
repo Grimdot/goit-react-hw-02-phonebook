@@ -10,7 +10,8 @@ export default class ContactForm extends Component {
   };
 
   onInputChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
   };
 
   onFormSubmit = e => {
