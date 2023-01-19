@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import ContactItem from 'components/ContactItem/ContactItem';
 
 const ContactList = ({ contacts, handleDeleteBtn }) => {
@@ -16,6 +18,17 @@ const ContactList = ({ contacts, handleDeleteBtn }) => {
       })}
     </ul>
   );
+};
+
+ContactList.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      number: PropTypes.string,
+      id: PropTypes.string,
+    })
+  ),
+  handleDeleteBtn: PropTypes.func,
 };
 
 export default ContactList;

@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import css from './ContactItem.module.css';
 
 const ContactItem = ({ id, name, number, handleDeleteBtn }) => {
@@ -18,6 +20,13 @@ const ContactItem = ({ id, name, number, handleDeleteBtn }) => {
       </button>
     </li>
   );
+};
+
+ContactItem.propTypes = {
+  id: PropTypes.string,
+  name: PropTypes.string,
+  number: PropTypes.string,
+  handleDeleteBtn: PropTypes.func,
 };
 
 export default ContactItem;
