@@ -12,7 +12,6 @@ const ContactItem = ({ id, name, number, handleDeleteBtn }) => {
         type="button"
         onClick={() => {
           handleDeleteBtn(id);
-          console.log(id);
         }}
         className={css.button}
       >

@@ -16,22 +16,21 @@ export default class App extends Component {
     filter: '',
   };
 
-  onFormSubmit = e => {
-    const contactName = e.target.elements.name.value;
-    const contactNumber = e.target.elements.number.value;
-
-    this.setState(prevState => {
-      return {
-        contacts: [
-          {
-            id: nanoid(),
-            name: contactName,
-            number: contactNumber,
-          },
-          ...prevState.contacts,
-        ],
-      };
-    });
+  updateContactsList = (newContactName, newContactNumber) => {
+    this.checkExistingContact(newContactName)
+      ? alert(`${newContactName} is already in contacts!`)
+      : this.setState(prevState => {
+          return {
+            contacts: [
+              {
+                id: nanoid(),
+                name: newContactName,
+                number: newContactNumber,
+              },
+              ...prevState.contacts,
+            ],
+          };
+        });
   };
 
   onInputChange = e => {
@@ -48,6 +47,7 @@ export default class App extends Component {
 
   checkExistingContact = newName => {
     const normalizedNewName = newName.toLowerCase();
+
     return this.state.contacts.some(
       ({ name }) => name.toLowerCase() === normalizedNewName
     );
@@ -63,10 +63,7 @@ export default class App extends Component {
     return (
       <div className={css.container}>
         <h1>Phonebook</h1>
-        <ContactForm
-          handleSubmit={this.onFormSubmit}
-          checkContact={this.checkExistingContact}
-        />
+        <ContactForm updateContactsList={this.updateContactsList} />
 
         <h2>Contacts</h2>
         <Filter

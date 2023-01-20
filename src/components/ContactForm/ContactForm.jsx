@@ -16,13 +16,10 @@ export default class ContactForm extends Component {
 
   onFormSubmit = e => {
     e.preventDefault();
+    const { name, number } = this.state;
+    const { updateContactsList } = this.props;
 
-    const { checkContact } = this.props;
-    const contactName = e.target.elements.name.value;
-
-    checkContact(contactName)
-      ? alert(`${contactName} is already in contacts!`)
-      : this.props.handleSubmit(e);
+    updateContactsList(name, number);
 
     this.formReset();
   };
@@ -80,6 +77,5 @@ export default class ContactForm extends Component {
 }
 
 ContactForm.propTypes = {
-  handleSubmit: PropTypes.func,
-  checkContact: PropTypes.func,
+  updateContactsList: PropTypes.func,
 };
